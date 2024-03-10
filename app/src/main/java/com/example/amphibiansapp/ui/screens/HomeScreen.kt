@@ -67,9 +67,19 @@ fun PhotosGridScreen(
 @Composable
 fun HomeScreen(
     frogUIState: FrogUIState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(0.dp),
 ) {
-    PhotosGridScreen(
-        photos = frogUIState.photos, modifier = modifier
-    )
+    when(frogUIState) {
+        is FrogUIState.Successful -> PhotosGridScreen(
+            photos = frogUIState.photos, modifier = modifier
+        )
+        is FrogUIState.Loading -> {
+            Text(text = stringResource(R.string.loading))
+        }
+        is FrogUIState.Error -> {
+            Text(text = stringResource(R.string.error))
+        }
+    }
+
 }

@@ -1,4 +1,13 @@
 package com.example.amphibiansapp
 
-class FrogPhotosApplication {
+import android.app.Application
+import com.example.amphibiansapp.data.AppContainer
+import com.example.amphibiansapp.data.DefaultAppContainer
+
+class FrogPhotosApplication : Application() {
+    lateinit var container: AppContainer
+    override fun onCreate() {
+        super.onCreate()
+        container = DefaultAppContainer()
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.amphibiansapp
+package com.example.amphibiansapp.ui
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -13,21 +13,31 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.amphibiansapp.R
+import com.example.amphibiansapp.ui.screens.FrogsViewModel
+import com.example.amphibiansapp.ui.screens.HomeScreen
 
 @ExperimentalMaterial3Api
 @Composable
 fun FrogsPhotosApp() {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
-//    Scaffold(
-//        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-//        topBar = { FrogsTopAppBar(scrollBehavior = scrollBehavior)}
-//    ) {
-//        Surface(
-//            modifier = Modifier.fillMaxSize(),
-//        ) {
-////            val
-//        }
-//    }
+    Scaffold(
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        topBar = { FrogsTopAppBar(scrollBehavior = scrollBehavior)}
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+        ) {
+            val frogViewModel: FrogsViewModel =
+                viewModel(factory = FrogsViewModel.Factory)
+
+            HomeScreen(
+                frogUIState = frogViewModel.frogUIState,
+                contentPadding =  it
+            )
+        }
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
