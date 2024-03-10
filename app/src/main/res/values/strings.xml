@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AmphibiansApp</string>
+    <string name="frog_photo">Frog photo</string>
+    <string name="app_title">Frogs photos</string>
+</resources>
